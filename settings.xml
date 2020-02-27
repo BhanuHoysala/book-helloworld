@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"
+ xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <servers>
+      <server>
+         <id>BoeingArtifactoryRelease</id>
+         <username>${env.SRESUSER}</username>  <!-- SRESUSER=BEMSID -->
+         <password>${env.SRESAPIKEY}</password>   <!-- SRESAPIKEY=Artifactory API Key -->
+         <configuration>
+            <httpConfiguration>
+               <all>
+                  <usePreemptive>true</usePreemptive>
+               </all>
+            </httpConfiguration>
+         </configuration>
+      </server>
+      <server>
+         <id>BoeingArtifactorySnapshot</id>
+         <username>${env.SRESUSER}</username>  <!-- SRESUSER=BEMSID -->
+         <password>${env.SRESAPIKEY}</password>   <!-- SRESAPIKEY=Artifactory API Key -->
+         <configuration>
+            <httpConfiguration>
+               <all>
+                  <usePreemptive>true</usePreemptive>
+               </all>
+            </httpConfiguration>
+         </configuration>
+      </server>
+   </servers>
+
+   <profiles>
+      <profile>
+         <id>RELEASE</id>
+         <activation>
+            <activeByDefault>true</activeByDefault>
+         </activation>
+         <repositories>
+            <repository>
+               <id>BoeingArtifactoryRelease</id>
+               <name>BoeingArtifactoryRelease</name>
+               <url>https://sres.web.boeing.com/artifactory/list/Maven-Releases/</url>
+               <releases>
+                  <enabled>true</enabled>
+                  <checksumPolicy>warn</checksumPolicy>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+                  <checksumPolicy>warn</checksumPolicy>
+               </snapshots>
+            </repository>
+            <repository>
+               <id>central</id>
+               <name>Central Repository</name>
+               <url>http://repo.maven.apache.org/maven2</url>
+               <layout>default</layout>
+               <releases>
+                  <enabled>false</enabled>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+               </snapshots>
+            </repository>
+         </repositories>
+         <!-- download plugins from this repo -->
+         <pluginRepositories>
+            <pluginRepository>
+               <id>BoeingArtifactoryRelease</id>
+               <name>BoeingArtifactoryRelease</name>
+               <url>https://sres.web.boeing.com/artifactory/list/Maven-Releases/</url>
+               <releases>
+                  <enabled>true</enabled>
+                  <checksumPolicy>warn</checksumPolicy>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+                  <checksumPolicy>warn</checksumPolicy>
+               </snapshots>
+            </pluginRepository>
+            <pluginRepository>
+               <id>central</id>
+               <name>Central Repository</name>
+               <url>http://repo.maven.apache.org/maven2</url>
+               <layout>default</layout>
+               <releases>
+                  <enabled>false</enabled>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+               </snapshots>
+            </pluginRepository>
+         </pluginRepositories>
+      </profile>
+      
+      <profile>
+         <id>SNAPSHOT</id>
+         <repositories>
+            <repository>
+               <id>BoeingArtifactorySnapshot</id>
+               <name>BoeingArtifactorySnapshot</name>
+               <url>https://sres.web.boeing.com/artifactory/list/Maven-Snapshots/</url>
+               <releases>
+                  <enabled>true</enabled>
+                  <checksumPolicy>warn</checksumPolicy>
+               </releases>
+               <snapshots>
+                  <enabled>true</enabled>
+                  <checksumPolicy>warn</checksumPolicy>
+               </snapshots>
+            </repository>
+            <repository>
+               <id>central</id>
+               <name>Central Repository</name>
+               <url>http://repo.maven.apache.org/maven2</url>
+               <layout>default</layout>
+               <releases>
+                  <enabled>false</enabled>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+               </snapshots>
+            </repository>
+         </repositories>
+         <pluginRepositories>
+            <pluginRepository>
+               <id>BoeingArtifactorySnapshot</id>
+               <name>BoeingArtifactorySnapshot</name>
+               <url>https://sres.web.boeing.com/artifactory/list/Maven-Snapshots/</url>
+               <releases>
+                  <enabled>true</enabled>
+                  <checksumPolicy>warn</checksumPolicy>
+               </releases>
+               <snapshots>
+                  <enabled>true</enabled>
+                  <checksumPolicy>warn</checksumPolicy>
+               </snapshots>
+            </pluginRepository>
+            <pluginRepository>
+               <id>central</id>
+               <name>Central Repository</name>
+               <url>http://repo.maven.apache.org/maven2</url>
+               <layout>default</layout>
+               <releases>
+                  <enabled>false</enabled>
+               </releases>
+               <snapshots>
+                  <enabled>false</enabled>
+               </snapshots>
+            </pluginRepository>
+         </pluginRepositories>
+      </profile>
+   </profiles>
+</settings>
